@@ -1,0 +1,15 @@
+<TodoFormView on:*="console.log(event)" />
+
+<script>
+	import TodoFormView from "./components/TodoFormView/TodoFormView";
+	
+	
+
+	export default {
+	  components: {
+	    TodoFormView(){
+			new TodoFormView({data:this.data})
+		}
+	  }
+	};
+</script>

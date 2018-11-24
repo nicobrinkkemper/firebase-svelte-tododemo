@@ -1,0 +1,23 @@
+<TodoFormView />
+
+<script>
+	import TodoFormView from "./components/TodoFormView/TodoFormView";
+	import Flatpickr from "svelte-flatpickr";
+	
+	function withDefaultData(Component, data) {
+	  return function(opts) {
+	    opts.data || (opts.data = {});
+	    Object.assign(opts.data, data);
+	    return new Component(opts);
+	  };
+	}
+
+	export default {
+	  components: {
+	    Flatpickr,
+	    TodoFormView() {
+	      return new TodoFormView({ data: this.data });
+	    }
+	  }
+	};
+</script>

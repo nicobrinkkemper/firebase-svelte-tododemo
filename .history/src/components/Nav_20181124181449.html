@@ -1,0 +1,22 @@
+<nav class="row">
+	<div class="col-md-12">
+		<hr />
+	</div>
+	<div class="col-md-12">
+		<div class="row">
+			<div class="col-md-12">
+				{#if !uid}
+				<button class="btn btn-success" onClick={onLogin}>Login</button>
+				{:elseif profile}
+				<button class="btn btn-danger" onClick={onLogout}>Logout {profile.displayName}</button>
+				{/if}
+			</div>
+		</div>
+	</div>
+</nav>
+
+<script>
+	export default {};
+</script>
+<style>
+</style>

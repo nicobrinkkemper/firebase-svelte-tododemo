@@ -1,0 +1,14 @@
+{
+    "name": "firebase-svelte",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "firebase-svelte-constants": "file:src/services/firebase-svelte-constants/"
+    }
+}

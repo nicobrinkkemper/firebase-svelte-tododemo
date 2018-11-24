@@ -1,0 +1,24 @@
+<div id="todoapp">
+	<TodoForm uid={uid} priority={PRIORITY} todo={todo} flatpickrOptions={flatpickrOptions} /> {#if uid } {'logged in'} {:else} {'logged off'} {/if}
+	<Nav />
+</div>
+
+<script>
+  import Nav from "./components/Nav.html";
+  import TodoForm from "./components/TodoForm.html";
+  export default {
+    components: {
+      Nav,
+      TodoForm
+    },
+    data: ()=>({
+      uid:1
+    })
+  };
+</script>
+
+<style>
+  #todoapp {
+    background: #ccc;
+  }
+</style>

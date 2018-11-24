@@ -1,0 +1,47 @@
+<TodoFormView />
+
+<script>
+	import TodoFormView from "./TodoFormView/TodoFormView.html";
+	import { PRIORITY } from "firebase-svelte-tododemo-constants";
+
+	function withDefaultData(Component, data, methods) {
+	  return function(opts) {
+	    opts.data || (opts.data = {});
+	    opts.methods || (opts.methods = {});
+	    Object.assign(opts.data, data);
+	    Object.assign(opts.methods, methods);
+	    return new Component(opts);
+	  };
+	}
+
+	export default {
+	  components: {
+	    TodoFormView: withDefaultData(
+	      TodoFormView,
+	      {
+	        priority: PRIORITY,
+	        todo: {
+	          text: "",
+	          datetime: new Date(),
+	          priority: 0
+	        },
+	        flatpickrOptions: {
+	          enableTime: true,
+	          defaultDate: new Date(),
+	          time_24hr: true,
+	          minDate: new Date(),
+	          onChange(selectedDates, dateStr, instance) {
+	            console.log("Options onChange handler");
+	          }
+	        }
+	      },
+	      {
+	        addTodo(todo) {
+	          console.log("yay");
+	          this.store.addTodo(todo);
+	        }
+	      }
+	    )
+	  }
+	};
+</script>

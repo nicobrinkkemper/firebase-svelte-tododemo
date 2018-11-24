@@ -1,0 +1,32 @@
+<div id="todoapp">
+{#if uid }
+	{'logged in'}
+{else}
+	{'logged off in'}
+{/if}
+</div>
+
+<script>
+import Board from './Board.html';
+import Setup from './Setup.html';
+export default {
+    components: {
+        Board,
+        Setup
+    }
+}
+</script>
+
+
+
+<style>
+#todoapp {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    color: #313131;
+    font-family: Arial, sans-serif;
+}
+</style>

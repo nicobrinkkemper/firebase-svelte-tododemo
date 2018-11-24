@@ -1,0 +1,29 @@
+<script>
+	import TodoFormView from "./components/TodoFormView/TodoFormView";
+	function withDefaultData(Component, data) {
+	  return function(opts) {
+	    opts.data || (opts.data = {});
+	    Object.assign(opts.data, data);
+	    const comp = new Component(opts);
+
+	    comp.fire = (name, event) => {
+	      Component.prototype.fire.call(comp, name, event);
+	      Component.prototype.fire.call(comp, "*", {
+	        name,
+	        event
+	      });
+	    };
+
+	    return comp;
+	  };
+	}
+
+	export default {
+	  components: {
+	    HOC: withDefaultData(PigeonMeme, {
+	      actual: "function",
+	      guess: "higher order component"
+	    })
+	  }
+	};
+</script>

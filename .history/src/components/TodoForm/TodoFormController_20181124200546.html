@@ -1,0 +1,46 @@
+<TodoFormView />
+
+<script>
+	import TodoFormView from "./components/TodoFormView/TodoFormView";
+
+	function withDefaultData(Component, data) {
+	  return function(opts) {
+	    opts.data || (opts.data = {});
+	    Object.assign(opts.data, data);
+	    return new Component(opts);
+	  };
+	}
+
+	function withDefaultHandlers(Component, data) {
+	  return function(opts) {
+	    opts.methods || (opts.methods = {});
+	    Object.assign(opts.data, data);
+	    return new Component(opts);
+	  };
+	}
+
+	export default {
+	  components: {
+	    TodoFormView: withDefaultData(TodoFormView, {
+	      todo: {
+	        text: "",
+	        datetime: new Date(),
+	        priority: 0
+	      },
+	      flatpickrOptions: {
+	        enableTime: true,
+	        defaultDate: new Date(),
+	        time_24hr: true,
+	        minDate: new Date(),
+	        onChange(selectedDates, dateStr, instance) {
+	          console.log("Options onChange handler");
+	        }
+	      },
+	      addTodo(todo) {
+			  console.log('yay')
+	        this.store.addTodo(todo);
+	      }
+	    })
+	  }
+	};
+</script>

@@ -1,0 +1,44 @@
+<div class="row">
+	<div class="col-md-12">
+		<br />
+		<div class="input-group">
+			<input class="form-control text" type="text" required={true} value={todo.text} placeholder="Write a todo" onKeyUp={onSubmit}
+			 onChange={onTextChange} />
+
+			<div class="form-control datepicker-container">
+				Select date
+				<Nanocal />
+			</div>
+			<select class="form-control priority" value={todo.priority || 0} onChange={onPriorityChange}>
+				<option value={0}>{priority[0]}</option>
+				<option value={1}>{priority[1]}</option>
+				<option value={2}>{priority[2]}</option>
+			</select>
+			<div class="input-group-append">
+				<button class="btn btn-primary" onClick={onAdd}>
+					Add
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+ import Nanocal from "nanocal";
+ export default {
+   components: {
+     Nanocal
+   }
+ };
+</script>
+<style>
+.datepicker-container{
+	position: relative
+}
+.wrapper{
+	position: absolute;
+	top:0;
+	left:0;
+	height:10em;
+	width:10em
+}
+</style>
