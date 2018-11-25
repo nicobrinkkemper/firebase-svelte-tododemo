@@ -3,29 +3,32 @@ import stringHash from 'string-hash'
 
 class TodoDemoStore extends Store {
     addTodo(todo) {
-        const id = stringHash(todo.text)
+        const id = stringHash(_todo.text)
         const todos = {
             ...this.get().todos,
             [id]: {
-                ...todo,
+                ..._todo,
                 id,
                 completed: false
             }
         };
-        console.log(todos)
         this.set({ todos });
     }
 
     toggleTodo(id) {
-        const todo = this.get().todos[id]
-        const todos = {
-            ...this.get().todos,
-            [id]: {
-                ...todo,
-                completed: !todo.completed
+        const todos = this.get().todos.map(todo => {
+            if (todo.id === id) {
+                return {
+                    id,
+                    completed: !todo.completed,
+                    description: todo.description
+                };
             }
-        };
+
+            return todo;
+        });
+
         this.set({ todos });
     }
 }
-export default new TodoDemoStore({todos:{}});
+export default new TodoDemoStore();

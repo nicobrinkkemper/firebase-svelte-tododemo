@@ -5,6 +5,11 @@ const app = new App({
 	target: document.querySelector('.todoapp'),
 	data: {
 		name: 'todoapp',
+		todo: {
+			text: '',
+			datetime: new Date(),
+			priority: 0
+		}
 		...constants
 	}
 });

@@ -12,20 +12,11 @@ class TodoDemoStore extends Store {
                 completed: false
             }
         };
-        console.log(todos)
         this.set({ todos });
     }
 
     toggleTodo(id) {
-        const todo = this.get().todos[id]
-        const todos = {
-            ...this.get().todos,
-            [id]: {
-                ...todo,
-                completed: !todo.completed
-            }
-        };
-        this.set({ todos });
+        
     }
 }
-export default new TodoDemoStore({todos:{}});
+export default new TodoDemoStore();

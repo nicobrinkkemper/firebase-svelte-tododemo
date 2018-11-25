@@ -1,12 +1,11 @@
 <div id="todoapp">
-	<TodoForm uid={uid} />
-  <TodoList uid={uid} />
+	<TodoForm uid={uid} /> {#if uid } {'logged in'} {:else}
+	{'logged off'} {/if}
 	<Nav uid={uid} />
 </div>
 
 <script>
   import TodoForm from "./components/TodoForm.html";
-  import TodoList from "./components/TodoList.html";
   import Nav from "./components/Nav.html";
   import store from "./store";
 
@@ -16,8 +15,7 @@
     },
     components: {
       Nav,
-      TodoForm,
-      TodoList
+      TodoForm
     },
     methods: {
       

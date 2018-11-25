@@ -28,4 +28,4 @@ class TodoDemoStore extends Store {
         this.set({ todos });
     }
 }
-export default new TodoDemoStore({todos:{}});
+export default new TodoDemoStore();

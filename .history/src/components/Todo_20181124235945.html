@@ -1,0 +1,38 @@
+<div class={`Todo`}>
+	<h4>
+		{text}
+		<button class="float-right btn btn-success btn-sm" on:click="onCompleteTodo()">
+			Complete
+		</button>
+	</h4>
+	<p>
+		{#each badges as badge, i}
+		<span class={`badge badge-${color}`}>
+			{badge.text}
+		</span>
+		{/each}
+	</p>
+</div>
+<script>
+  import Store from "../store";
+export default {
+    data: ()=>({
+        badges: [
+            text: 
+        ]
+    }),
+    methods: {
+        onComplete(){
+            Store.toggleTodo(this.id)
+        }
+    }
+}
+</script>
+<style>
+  .btn-success {
+    margin-left: 10px;
+  }
+  .badge {
+    margin-right: 6px;
+  }
+</style>

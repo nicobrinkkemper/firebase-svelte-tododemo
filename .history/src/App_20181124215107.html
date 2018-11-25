@@ -1,0 +1,34 @@
+<div id="todoapp">
+	<TodoForm uid={uid} priority={PRIORITY} todo={todo} flatpickrOptions={flatpickrOptions} /> {#if uid } {'logged in'} {:else}
+	{'logged off'} {/if}
+	<Nav uid={uid} />
+</div>
+
+<script>
+  import TodoForm from "./components/TodoForm/TodoForm.html";
+  import Nav from "./components/Nav.html";
+  import store from "./store";
+
+  export default {
+    oncreate() {
+      const listener = this.store.on("state", state => {
+        console.log(state);
+      });
+      this.on("destroy", listener.cancel);
+    },
+    store:() => store,
+    components: {
+      Nav,
+      TodoForm
+    },
+    methods: {
+      
+    }
+  };
+</script>
+
+<style>
+  #todoapp {
+    background: #ccc;
+  }
+</style>

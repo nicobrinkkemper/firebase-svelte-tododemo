@@ -12,7 +12,6 @@ class TodoDemoStore extends Store {
                 completed: false
             }
         };
-        console.log(todos)
         this.set({ todos });
     }
 
@@ -22,10 +21,11 @@ class TodoDemoStore extends Store {
             ...this.get().todos,
             [id]: {
                 ...todo,
-                completed: !todo.completed
+                id,
+                completed: false
             }
         };
         this.set({ todos });
     }
 }
-export default new TodoDemoStore({todos:{}});
+export default new TodoDemoStore();

@@ -1,6 +1,6 @@
 <div id="todoapp">
-	<TodoForm uid={uid} />
-  <TodoList uid={uid} />
+	<TodoForm uid={uid} /> {#if uid } {'logged in'} {:else}
+	{'logged off'} {/if}
 	<Nav uid={uid} />
 </div>
 

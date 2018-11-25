@@ -1,0 +1,71 @@
+<div class="row">
+	<div class="col-md-12">
+		<br />
+		<div class="input-group">
+			<input class="form-control text" type="text" required={true} bind:value="text" placeholder="Write a todo" on:keydown=onSubmit(event)}
+			 onChange={onTextChange} />
+			<div class="input-group-append">
+				<Flatpickr options="{ flatpickrOptions }" bind:value="datetime" placeholder="select date and time" />
+			</div>
+			<select class="form-control priority" bind:value="priority">
+				<option value={0}>{priorityLabels[0]}</option>
+				<option value={1}>{priorityLabels[1]}</option>
+				<option value={2}>{priorityLabels[2]}</option>
+			</select>
+			<div class="input-group-append">
+				<button class="btn btn-primary" on:click="addTodo()">
+					Add
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	import constants from "firebase-svelte-tododemo-constants";
+	import Flatpickr from "svelte-flatpickr";
+	import Store from "../store";
+
+	const addTodo = () => {
+	  const { text, datetime, priority } = this.get();
+	  this.store.addTodo({
+	    text,
+	    datetime,
+	    priority
+	  });
+	};
+	const onSubmit = event => {
+	  if (event.keyCode === 13) addTodo();
+	};
+	export default {
+	  oncreate() {
+	    this.store.on("state", ({ todos }) => {
+	      console.log(`hello ${todos}`);
+	    });
+	  },
+	  data: () => ({
+	    priorityLabels: constants.PRIORITY,
+	    text: "",
+	    datetime: new Date(),
+	    priority: 0,
+	    flatpickrOptions: {
+	      enableTime: true,
+	      defaultDate: new Date(),
+	      time_24hr: true,
+	      minDate: new Date(),
+	      onChange(selectedDates, dateStr, instance) {
+	        console.log("Options onChange handler");
+	      }
+	    }
+	  }),
+	  components: {
+	    Flatpickr
+	  },
+	  store: () => Store,
+	  methods: {
+	    onSubmit,
+	    addTodo
+	  }
+	};
+</script>
+<style>
+</style>
