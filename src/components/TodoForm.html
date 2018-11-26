@@ -21,49 +21,45 @@
 	</div>
 </div>
 <script>
-	import constants from "firebase-svelte-tododemo-constants";
-	import Flatpickr from "svelte-flatpickr";
-	import Store from "../store";
-	import { addMinutes } from "date-fns";
-
-	export default {
-	  oncreate() {
-	    this.store.on("state", ({ todos }) => {
-	      console.log(`hello ${todos}`);
-	    });
-	  },
-	  data: () => {
-			const defaultDate = addMinutes(new Date(),1)
-	    return {
-	      priorityLabels: constants.PRIORITY,
-	      text: "",
-	      datetime: defaultDate,
-	      priority: 0,
-	      flatpickrOptions: {
-	        enableTime: true,
-	        defaultDate: defaultDate,
-	        time_24hr: true,
-	        minDate: defaultDate,
-	        onChange(selectedDates, dateStr, instance) {
-	          console.log("Options onChange handler");
-	        }
-	      }
-	    };
-	  },
-	  components: {
-	    Flatpickr
-	  },
-	  store: () => Store,
-	  methods: {
-	    onSubmit() {
-	      if (event.keyCode === 13) this.addTodo();
-	    },
-	    addTodo() {
-	      const { text, datetime, priority } = this.get();
-	      this.store.addTodo({ text, datetime, priority });
-	    }
-	  }
-	};
+			import constants from "firebase-svelte-tododemo-constants";
+			import Flatpickr from "svelte-flatpickr";
+			import { addMinutes } from "date-fns";
+			import { addTodo } from "../firebase";
+			export default {
+			  data: () => {
+			    const defaultDate = addMinutes(new Date(), 1);
+			    return {
+			      priorityLabels: constants.PRIORITY,
+			      text: "",
+			      datetime: defaultDate,
+			      priority: 0,
+			      flatpickrOptions: {
+			        enableTime: true,
+			        defaultDate: defaultDate,
+			        time_24hr: true,
+			        minDate: defaultDate,
+			        onChange(selectedDates, dateStr, instance) {
+			          console.log("Options onChange handler");
+			        }
+			      }
+			    };
+			  },
+			  components: {
+			    Flatpickr
+			  },
+			  methods: {
+			    onSubmit() {
+			      if (event.keyCode === 13) this.addTodo();
+			    },
+			    addTodo() {
+						const { text, datetime, priority } = this.get();
+						if(text === "") return;
+			      const newTodo = { text, datetime, priority };
+			      addTodo(newTodo);
+			      this.set({ text: "" });
+			    }
+			  }
+			};
 </script>
 <style>
 </style>

@@ -15,10 +15,10 @@ export const DATETIME_COLOR = [
 ]
 export const DATETIME_FORMAT = "YYYY-MM-DDTHH:mm"
 export const FIREBASE_CONFIG = {
-    apiKey: "AIzaSyD9L71ousdY55bhl_EjvIm4EyP-a6fdJHU",
-    authDomain: "fir-svelte-tododemo.firebaseapp.com",
-    databaseURL: "https://fir-svelte-tododemo.firebaseio.com",
-    projectId: "fir-svelte-tododemo",
-    storageBucket: "fir-svelte-tododemo.appspot.com",
-    messagingSenderId: "361103793508"
+    apiKey: "AIzaSyCpUYAigTDOObDrG5Ufhx5tNSu61SJWgfE",
+    authDomain: "fir-svelte-dda60.firebaseapp.com",
+    databaseURL: "https://fir-svelte-dda60.firebaseio.com",
+    projectId: "fir-svelte-dda60",
+    storageBucket: "fir-svelte-dda60.appspot.com",
+    messagingSenderId: "549730755040"
 }

@@ -1,31 +1,50 @@
-import { Store } from 'firebase-svelte';
+import { Store as SvelteStore } from 'svelte/store.js';
 import stringHash from 'string-hash'
 
-class TodoDemoStore extends Store {
+class TodoDemoStore extends SvelteStore {
+    setUser(user) {
+        return this.set({ user })
+    }
+    getUser() {
+        return this.get().user
+    }
+    setTodos(todos) {
+        return this.set({ todos })
+    }
+    getTodos() {
+        return this.get().todos
+    }
+    getTodo(id) {
+        return this.get().todos[id]
+    }
     addTodo(todo) {
         const id = stringHash(todo.text)
-        const todos = {
-            ...this.get().todos,
+        this.setTodos({
+            ...this.getTodos(),
             [id]: {
                 ...todo,
                 id,
-                completed: false
+                completed: !!todo.completed
             }
-        };
-        console.log(todos)
-        this.set({ todos });
+        });
+        return id;
     }
 
     toggleTodo(id) {
-        const todo = this.get().todos[id]
-        const todos = {
-            ...this.get().todos,
-            [id]: {
-                ...todo,
-                completed: !todo.completed
-            }
-        };
-        this.set({ todos });
+        const toggledTodo = {
+            ...this.getTodo(id),
+            completed: !this.getTodo(id).completed
+        }
+        this.setTodos({
+            ...this.getTodos(),
+            [id]: toggledTodo
+        });
+        return toggledTodo;
     }
 }
-export default new TodoDemoStore({todos:{}});
+
+export const Store = new TodoDemoStore({ todos: {}, user: null });
+
+
+
+export default Store

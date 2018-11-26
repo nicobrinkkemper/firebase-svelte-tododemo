@@ -1,32 +1,26 @@
 <div id="todoapp">
-	<TodoForm uid={uid} />
-  <TodoList uid={uid} />
-	<Nav uid={uid} />
+	<TodoForm />
+	<TodoList />
+	<Nav />
 </div>
 
 <script>
   import TodoForm from "./components/TodoForm.html";
   import TodoList from "./components/TodoList.html";
   import Nav from "./components/Nav.html";
-  import store from "./store";
 
   export default {
-    oncreate() {
-      
-    },
+    oncreate() {},
     components: {
       Nav,
       TodoForm,
       TodoList
     },
-    methods: {
-      
-    }
+    methods: {}
   };
 </script>
 
 <style>
   #todoapp {
-    background: #ccc;
   }
 </style>
